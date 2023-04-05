@@ -1,0 +1,29 @@
+version: '3'
+services:
+  web1:
+    networks:
+      - msNetwork
+    build:
+      context: ./ms1
+      dockerfile: Dockerfile
+    hostname: ms1
+    ports:
+      - "49000:30600"
+    volumes:
+      - ./ms1:/ms1app
+  web2:
+    networks:
+      - msNetwork
+    build:
+      context: ./ms2
+      dockerfile: Dockerfile
+    hostname: ms2
+    ports:
+      - "49100:30700"
+    volumes:
+      - ./ms2:/ms2app
+
+networks:
+  msNetwork:
+    name: ms-app-net
+    external: false
